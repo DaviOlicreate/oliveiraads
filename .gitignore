@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Dependências (não usadas neste projeto, mas evita acidentes)
+node_modules/
+
+# Vercel
+.vercel
+
+# Ambiente
+.env
+.env.local
