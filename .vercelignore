@@ -1,0 +1,11 @@
+# Arquivos que NÃO devem ir para a Vercel.
+#
+# O scripts/dev-server.js é o mais importante daqui: se um arquivo de
+# servidor Node ficar visível para a Vercel (ainda mais na raiz, com nome
+# server.js ou index.js), ela deixa de servir o site como estático e passa
+# a rodar o Node — o que quebra CSS, JS e imagens com erro 404.
+scripts/
+.claude/
+README.md
+.DS_Store
+node_modules/

@@ -46,14 +46,20 @@ Assim que tiver 3 depoimentos reais (print de WhatsApp, áudio transcrito ou ava
 2. Em vercel.com/new, importe o repositório
 3. Framework Preset: **Other**. Build Command: deixe **vazio**. Output Directory: deixe **vazio**
 
-O arquivo `server.js` é só para pré-visualizar no seu computador — pode apagar antes de publicar, ou deixar (a Vercel ignora).
+> ⚠️ **Nunca coloque um arquivo `server.js`, `index.js` ou `app.js` na raiz do projeto.**
+> A Vercel detecta esses nomes e passa a rodar o site como servidor Node em vez de
+> site estático. Quando isso acontece, a pasta `assets/` não vai junto no pacote e
+> **CSS, JS e imagens começam a dar 404** — o site fica no ar só com o texto puro.
+>
+> Por isso o servidor local mora em `scripts/dev-server.js` e está listado no
+> `.vercelignore`. Não mova ele para a raiz.
 
 ---
 
 ## Como rodar no seu computador
 
 ```bash
-node server.js
+node scripts/dev-server.js
 ```
 
 Depois abra `http://localhost:4321`.
@@ -144,9 +150,11 @@ if (window.gtag) gtag('event', 'generate_lead');
 │       ├── og-cover.jpg   miniatura do link (pronta)
 │       └── davi.jpg       SUA FOTO — falta adicionar
 ├── vercel.json         cache e segurança
+├── .vercelignore       o que não vai para a Vercel
 ├── robots.txt          troque o domínio
 ├── sitemap.xml         troque o domínio
-└── server.js           só para testar local
+└── scripts/
+    └── dev-server.js   só para testar local (não mover para a raiz)
 ```
 
 ---
