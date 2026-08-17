@@ -1,11 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
 
-  "//": "Site 100% estático: nenhum build, nenhum servidor. Se a Vercel tentar buildar isto como app Node ('No entrypoint found'), o Framework Preset do projeto está errado no painel — precisa estar em 'Other'.",
-  "framework": null,
-  "buildCommand": null,
-  "installCommand": null,
-  "outputDirectory": null,
+  "//": "Site 100% estático: sem build e sem servidor. O modo estático vem do Framework Preset = 'Other', configurado no painel da Vercel (Settings > Build and Deployment). Se algum dia o build falhar com 'No entrypoint found', é esse preset que voltou para Node.",
 
   "cleanUrls": true,
   "trailingSlash": false,
