@@ -1,11 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
 
-  "//": "Estes 4 campos forçam site 100% estático e sobrescrevem o que estiver salvo no painel da Vercel. Sem eles, a Vercel pode detectar um arquivo de servidor Node e parar de servir a pasta assets/, causando 404 em CSS, JS e imagens.",
+  "//": "Site 100% estático: nenhum build, nenhum servidor. Se a Vercel tentar buildar isto como app Node ('No entrypoint found'), o Framework Preset do projeto está errado no painel — precisa estar em 'Other'.",
   "framework": null,
   "buildCommand": null,
   "installCommand": null,
-  "outputDirectory": ".",
+  "outputDirectory": null,
 
   "cleanUrls": true,
   "trailingSlash": false,
