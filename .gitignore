@@ -18,3 +18,7 @@ node_modules/
 # Ambiente
 .env
 .env.local
+
+# Fotos originais do celular: pesadas demais para o repositório.
+# Só a versão otimizada (assets/img/davi.jpg) deve ser versionada.
+assets/img/IMG_*
