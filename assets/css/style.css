@@ -365,6 +365,7 @@ ul,ol{margin:0; padding:0; list-style:none}
   background:var(--surface); border:1px solid var(--line);
   border-radius:var(--r); padding:16px 20px; max-width:250px;
   box-shadow:var(--shadow);
+  z-index:3; /* precisa ficar acima da foto, que usa z-index 2 */
 }
 .about__badge strong{display:block; font-family:var(--font-head); font-size:15px; color:var(--navy); margin-bottom:4px}
 .about__badge span{font-size:13px; color:var(--muted); line-height:1.45}
