@@ -9,11 +9,17 @@ const CONFIG = {
   // Número do WhatsApp com código do país, só dígitos.
   whatsapp: '5582996788351',
 
-  // Mensagem padrão dos botões de WhatsApp (fora do formulário).
-  msgPadrao: 'Ola Davi! Quero implementar tráfego pago para o meu negócio.',
+  // Mensagem dos botões de WhatsApp (fora do formulário).
+  //
+  // {origem} vira " (via Instagram)" ou " (via Google)" quando o visitante
+  // chega por um anúncio. Sem campanha na URL, some sem deixar rastro.
+  //
+  // Termina em dois-pontos de propósito: o WhatsApp deixa o cursor no fim,
+  // então o lead completa com o segmento dele sem você precisar perguntar.
+  msgPadrao: 'Olá, Davi! Vim pelo seu site{origem} e quero minha análise gratuita. Meu negócio é:',
 
-  // Anexa a origem do visitante (utm_source, fbclid, gclid) na mensagem
-  // enviada pelo formulário — assim você sabe de qual anúncio veio o lead.
+  // Identifica de onde veio o lead (utm_source, fbclid, gclid), tanto na
+  // mensagem dos botões quanto na do formulário.
   rastrearOrigem: true
 };
 
@@ -46,6 +52,24 @@ function origemDoVisitante() {
   return partes.length ? partes.join(' / ') : 'acesso direto';
 }
 
+/** Nome curto e apresentável da origem, ou '' quando não houve campanha. */
+function origemCurta() {
+  if (!CONFIG.rastrearOrigem) return '';
+  const p = new URLSearchParams(location.search);
+  const src = (p.get('utm_source') || '').toLowerCase();
+
+  if (p.get('gclid') || src.includes('google')) return 'Google';
+  if (p.get('fbclid') || /\b(ig|instagram|facebook|meta)\b/.test(src)) return 'Instagram';
+  if (src) return src;
+  return '';
+}
+
+/** Mensagem dos botões diretos, com a origem encaixada dentro da frase. */
+function msgBotao() {
+  const o = origemCurta();
+  return CONFIG.msgPadrao.replace('{origem}', o ? ` (via ${o})` : '');
+}
+
 /* ---------------------------------------------------------
    2. Ano no rodapé
    --------------------------------------------------------- */
@@ -56,7 +80,7 @@ if (elAno) elAno.textContent = new Date().getFullYear();
    3. Aplica o número configurado em todos os links de WhatsApp
    --------------------------------------------------------- */
 $$('[data-wa]').forEach((a) => {
-  a.href = linkWhats(CONFIG.msgPadrao);
+  a.href = linkWhats(msgBotao());
 });
 
 /* ---------------------------------------------------------

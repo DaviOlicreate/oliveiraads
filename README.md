@@ -89,6 +89,35 @@ Mudou ali, mudou no site inteiro.
 
 ---
 
+## A mensagem dos botões de WhatsApp
+
+O botão flutuante e o link do rodapé abrem o WhatsApp com este texto pronto:
+
+```
+Olá, Davi! Vim pelo seu site e quero minha análise gratuita. Meu negócio é:
+```
+
+Dois detalhes propositais:
+
+**Termina em dois-pontos.** O WhatsApp deixa o cursor no fim do texto, então a
+pessoa completa com o segmento dela sem você precisar perguntar. Você já recebe
+o contato sabendo do que se trata.
+
+**Identifica a origem.** Se o visitante chegou por um anúncio, a frase vira:
+
+```
+Olá, Davi! Vim pelo seu site (via Instagram) e quero minha análise gratuita. Meu negócio é:
+```
+
+O `(via ...)` aparece só quando há `utm_source`, `fbclid` ou `gclid` na URL —
+em acesso direto some sem deixar rastro. Reconhece Google e Instagram/Meta
+automaticamente; qualquer outro `utm_source` aparece com o próprio nome.
+
+Para mudar o texto, edite `CONFIG.msgPadrao` em `assets/js/main.js`. O
+`{origem}` marca onde o "(via ...)" entra — pode movê-lo de lugar ou apagá-lo.
+
+---
+
 ## Como o formulário funciona
 
 Não existe backend. Ao enviar, o site:
